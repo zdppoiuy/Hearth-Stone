@@ -1,4 +1,6 @@
 package Game;
+import java.util.HashMap;
+
 import Card.*;
 import Unit.Hero;
 
@@ -9,10 +11,12 @@ public class GameLauncher {
 		GameLauncher myLauncher=new GameLauncher();
 		Hero myHero=new Hero(20);
 		Display myDisplay=new Display();
-		for(int i=0;i<20;i++){
-			myDisplay.displayCard(myHero.CardAll[i]);
-		}
 
+		System.out.println(myHero.onHandCard);
+		
+		System.out.println(myHero.deck);
+		//System.out.println(myHero.onHandCard.size());
+	
 	}
 
 	
