@@ -5,6 +5,7 @@ public class MinionCard extends Card{
 	public int minionAttact;
 	
 	public MinionCard(String cardName, int cardCost, int minionMaxLife, int minionAttact){
+		this.cardType="Minion";
 		this.cardName=cardName;
 		this.cardCost=cardCost;
 		this.minionMaxLife=minionMaxLife;

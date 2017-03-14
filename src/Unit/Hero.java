@@ -1,5 +1,8 @@
 package Unit;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -15,8 +18,10 @@ public class Hero extends Unit{
 	//public Card[] CardAll=new Card[20];
 	//public Card[] currentCardonHand;	
 	public HashMap<Integer, Card> deck=new HashMap<Integer, Card>();
-	public HashSet<Card> onHandCard=new HashSet<Card>();
+	public LinkedList<Card> onHandCard=new LinkedList<>();
 	public LinkedList<Minion> minionPool = new LinkedList<>();
+	InputStreamReader isr=new InputStreamReader(System.in);
+	BufferedReader br= new BufferedReader(isr);
 	
 	public Hero(int cardNumber){
 		this.unitLife=maxLife;
@@ -60,6 +65,62 @@ public class Hero extends Unit{
 			this.deck.remove(keySet[drawKey]);
 		}
 			
+	}
+	
+	public void useOnHandCard() throws IOException{
+		int onHandCardSize=this.onHandCard.size();
+		Card usedCard=new Card();
+		int position=-1;
+		while(position<0 || position>(onHandCardSize-1)){
+			System.out.println("Card want to use(0-"+(onHandCardSize-1)+"):");
+			try{
+				position=Integer.parseInt(br.readLine());
+			}catch(NumberFormatException nfe){
+				System.err.println("Invalid Format!");
+			}finally{
+				if(position>=0 && position<onHandCardSize){
+					usedCard=this.onHandCard.get(position);
+					this.onHandCard.remove(position);
+				}
+				
+			}
+		}
+		switch (usedCard.cardType) {
+		case "Minion":
+				this.useMinionCard(usedCard);
+			break;
+
+		default:
+				this.useMinionCard(usedCard);
+			break;
+		}
+		
+	}
+	
+	public void useMinionCard(Card card) throws IOException{
+		MinionCard myMinionCard= (MinionCard)card;
+		Minion myMinion=new Minion(myMinionCard);		
+		int poolSize=this.minionPool.size();
+		int position=-1;
+		while(position<0 || position>(poolSize)){
+			if(poolSize==0){
+				this.minionPool.add(myMinion);
+				position=0;
+			}else{
+				System.out.println("Select Minion Position (0 - "+poolSize+"):");
+				try{
+					position=Integer.parseInt(br.readLine());
+				}catch(NumberFormatException nfe){
+					System.err.println("Invalid Format!");
+				}finally{
+					if(position>=0 && position<=(poolSize)){
+						minionPool.add(position, myMinion);
+					}
+					
+				}
+			}
+		}
+		
 	}
 	
 	public void useWeaponCard(WeaponCard usedWeapon){
