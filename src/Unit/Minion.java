@@ -5,7 +5,7 @@ import Card.MinionCard;
 public class Minion extends Unit{
 	public Minion(MinionCard inMinionCard){
 		this.unitName=inMinionCard.cardName;
-		this.unitAttack=inMinionCard.minionAttact;
+		this.unitAttack=inMinionCard.minionAttack;
 		this.unitMaxLife=inMinionCard.minionMaxLife;
 		this.unitLife=inMinionCard.minionMaxLife;
 		this.unitDead=false;

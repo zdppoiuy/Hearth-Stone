@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 
 import Card.Card;
@@ -37,20 +36,13 @@ public class Hero extends Unit{
 		//Generate 70% 1-6 cost card and 30% 7-10 cost card
 		int index=0;
 		for(int i=0;i<(int)minioncardNumber*0.7;i++){
-			int cost=(int)(1+Math.random()*5);
-			int attack=(int)(Math.random()*2*cost);
-			int life=cost*2-attack;
-			String name="M"+cost+attack+life;
-			//this.CardAll[i]=new MinionCard(name,cost,attack,life);
-			this.deck.put(i, new MinionCard(name,cost,attack,life));
+			int cost=(int)(1+Math.random()*6);
+			this.deck.put(i, new MinionCard(cost));
 			index=i;
 		}
 		for(int i=index+1;i<minioncardNumber;i++){
-			int cost=(int)(6+Math.random()*4);
-			int attack=(int)(Math.random()*2*cost)-1;
-			int life=cost*2-attack+1;
-			String name="M"+cost+attack+life;
-			this.deck.put(i, new MinionCard(name,cost,attack,life));
+			int cost=(int)(6+Math.random()*5);
+			this.deck.put(i, new MinionCard(cost));
 		}
 	}
 	

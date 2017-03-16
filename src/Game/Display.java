@@ -15,7 +15,7 @@ public class Display {
 		for(int i=0;i<5;i++){
 			System.out.println("*                *");
 		}
-		System.out.println("*<"+myMinionCard.minionAttact+">          <"+myMinionCard.minionMaxLife+">*");
+		System.out.println("*<"+myMinionCard.minionAttack+">          <"+myMinionCard.minionMaxLife+">*");
 		System.out.println("******************");
 	}
 
